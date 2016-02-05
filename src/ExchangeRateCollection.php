@@ -22,4 +22,17 @@ class ExchangeRateCollection extends Collection
 
         parent::__construct($items);
     }
+
+    /**
+     * Add an item to the collection.
+     *
+     * @param  mixed  $item
+     * @return $this
+     */
+    public function add(ExchangeRate $item)
+    {
+        $this->items[] = $item;
+
+        return $this;
+    }
 }

@@ -1,7 +1,7 @@
 <?php
 namespace Rolice\LaravelCurrency;
 
-use DateTime;
+use Carbon\Carbon;
 use Rolice\LaravelCurrency\Exceptions\Exception;
 
 class ExchangeRate
@@ -27,11 +27,11 @@ class ExchangeRate
 
     /**
      * The exchange rate freshness as last update datetime
-     * @var DateTime
+     * @var Carbon
      */
     protected $updated_at = null;
 
-    public function __construct($source, $target, $price, DateTime $update_at)
+    public function __construct($source, $target, $price, Carbon $update_at)
     {
         $this->source = $source;
         $this->target = $target;

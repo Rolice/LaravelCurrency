@@ -24,7 +24,7 @@ class ServiceProvider extends LaravelServiceProvider
      */
     public function register()
     {
-        $this->app->bind('currency', Config::get('laravel-currency.repository'));
+        $this->app->bind('Currency', Config::get('laravel-currency.laravel-currency.repository'));
     }
 
 }
