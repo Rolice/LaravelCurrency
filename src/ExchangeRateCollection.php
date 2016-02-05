@@ -10,7 +10,7 @@ class ExchangeRateCollection extends Collection
 {
     public function __construct($items = [])
     {
-        if(!$items instanceof Traversable) {
+        if (!is_array($items) && !$items instanceof Traversable) {
             throw new InvalidArgumentException;
         }
 
@@ -26,7 +26,7 @@ class ExchangeRateCollection extends Collection
     /**
      * Add an item to the collection.
      *
-     * @param  mixed  $item
+     * @param  mixed $item
      * @return $this
      */
     public function add(ExchangeRate $item)

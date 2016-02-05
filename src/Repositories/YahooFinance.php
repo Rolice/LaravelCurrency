@@ -1,7 +1,6 @@
 <?php
 namespace Rolice\LaravelCurrency\Repositories;
 
-use DateTimeZone;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Config;
 use Rolice\LaravelCurrency\ExchangeRate;
@@ -16,10 +15,10 @@ class YahooFinance extends Repository implements RepositoryInterface
         $name = explode('/', isset($resource->fields->name) ? $resource->fields->name : '');
         $price = isset($resource->fields->price) ? $resource->fields->price : 0.00;
         $date = isset($resource->fields->utctime) ? $resource->fields->utctime : null;
-        $date = Carbon::createFromFormat('Y-m-dTH:i:s+0000', $date, DateTimeZone::UTC);
+        $date = Carbon::parse($date, 'UTC');
 
         if (2 > count($name)) {
-            throw new IncorrectResponseException('Cannot fetch source/target currencies.');
+            return null;
         }
 
         if (0 >= $price) {
@@ -48,8 +47,16 @@ class YahooFinance extends Repository implements RepositoryInterface
 
         $result = new ExchangeRateCollection;
 
-        foreach ($this->list->resources as $resource) {
-            $result->add($this->create($resource));
+        foreach ($response->list->resources as $resource) {
+            if (!isset($resource->resource)) {
+                throw new IncorrectResponseException('The exchange rate entry is missing resource property.');
+            }
+
+            $rate = $this->create($resource->resource);
+
+            if ($rate) {
+                $result->add($rate);
+            }
         }
 
         return $result;
