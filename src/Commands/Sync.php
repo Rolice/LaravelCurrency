@@ -47,21 +47,9 @@ class Sync extends Command
 
         DB::connection('econt')->disableQueryLog();
 
-        $this->comment(PHP_EOL . 'Fetching currencies... Please wait.');
+        $this->comment(PHP_EOL . 'Synchronizing currencies... Please wait while they are fetched up and converted.');
 
-        $currencies = $repository->fetch();
-
-        $this->comment(PHP_EOL . 'Converting ExchangeRateCollection to Currency array.');
-
-        /**
-         * @var ExchangeRate $rate
-         */
-        foreach ($currencies as $rate) {
-            /**
-             * @var Currency $currency
-             */
-            $repository->convert($rate);
-        }
+        $currencies = $repository->synchronize();
 
         $this->comment(PHP_EOL . 'Currencies are now synchronized successfully.');
 
