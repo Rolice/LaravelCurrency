@@ -3,9 +3,12 @@ namespace Rolice\LaravelCurrency\Models;
 
 use Illuminate\Support\Facades\Config;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Currency extends Model
 {
+
+    use SoftDeletes;
 
     /**
      * The table associated with the model.

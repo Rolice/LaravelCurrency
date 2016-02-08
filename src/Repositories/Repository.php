@@ -1,6 +1,7 @@
 <?php
 namespace Rolice\LaravelCurrency\Repositories;
 
+use Rolice\LaravelCurrency\Exceptions\Exception;
 use Rolice\LaravelCurrency\Exceptions\NotImplementedException;
 use Rolice\LaravelCurrency\ExchangeRate;
 use Rolice\LaravelCurrency\Models\Currency;
@@ -75,11 +76,13 @@ abstract class Repository implements RepositoryInterface
             $currency->code = $rate->code;
         }
 
-        $currency->price = $rate->price;
+        $currency->price = round($rate->price * 100);
         $currency->refreshed_at = $rate->refreshed_at;
 
         if ($auto_save) {
-            $currency->save();
+            if (!$currency->save()) {
+                throw new Exception("Could not save converted currency {$rate->code}.");
+            }
         }
 
         return $currency;
