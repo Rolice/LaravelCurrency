@@ -17,7 +17,8 @@ class ServiceProvider extends LaravelServiceProvider
         $this->publishes([__DIR__ . '/../config/laravel-currency' => config_path('laravel-currency')], 'config');
         $this->publishes([__DIR__ . '/../database/migrations/' => database_path('migrations')], 'migrations');
 
-        $this->mergeConfigFrom(__DIR__ . '/../config/laravel-currency/', 'laravel-currency');
+        $this->mergeConfigFrom(__DIR__ . '/../config/laravel-currency/laravel-currency.php', 'laravel-currency');
+        $this->mergeConfigFrom(__DIR__ . '/../config/laravel-currency/repository/yahoo-finance.php', 'yahoo-finance');
     }
 
     /**
