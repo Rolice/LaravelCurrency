@@ -1,6 +1,7 @@
 <?php
 namespace Rolice\LaravelCurrency\Models;
 
+use Illuminate\Support\Facades\Config;
 use Illuminate\Database\Eloquent\Model;
 
 class Currency extends Model
