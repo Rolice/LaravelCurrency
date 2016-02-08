@@ -8,40 +8,35 @@ class ExchangeRate
 {
 
     /**
-     * The base currency
+     * The base currency code.
      * @var string[3]
      */
-    protected $source = null;
+    public $base = null;
 
     /**
-     * The priced currency in the exchange rate
+     * The targeted currency code.
      * @var string[3]
      */
-    protected $target = null;
+    public $code = null;
 
     /**
      * The price of the exchange for single unit of the base currency
      * @var float
      */
-    protected $price = 0.00;
+    public $price = 0.00;
 
     /**
      * The exchange rate freshness as last update datetime
      * @var Carbon
      */
-    protected $updated_at = null;
+    public $refreshed_at = null;
 
-    public function __construct($source, $target, $price, Carbon $update_at)
+    public function __construct($base, $code, $price, Carbon $refreshed_at)
     {
-        $this->source = $source;
-        $this->target = $target;
+        $this->base = $base;
+        $this->code = $code;
         $this->price = $price;
-        $this->updated_at = $update_at;
-    }
-
-    public function __get($name)
-    {
-        return isset($this->$name) ? $this->$name : null;
+        $this->refreshed_at = $refreshed_at;
     }
 
     public function __set($name, $value)

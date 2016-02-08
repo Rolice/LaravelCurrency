@@ -66,13 +66,21 @@ abstract class Repository
         throw new NotImplementedException;
     }
 
-    public function convert(ExchangeRate $rate)
+    public function convert(ExchangeRate $rate, $auto_save = true)
     {
-        $currency = new Currency;
-        $currency->base = $rate->source;
-        $currency->code = $rate->target;
+        $currency = Currency::findOrNew($rate->code);
+
+        if (!$currency->exists) {
+            $currency->base = $rate->base;
+            $currency->code = $rate->code;
+        }
+
         $currency->price = $rate->price;
-        $currency->refreshed_at = $rate->updated_at;
+        $currency->refreshed_at = $rate->refreshed_at;
+
+        if ($auto_save) {
+            $currency->save();
+        }
 
         return $currency;
     }
