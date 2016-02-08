@@ -1,7 +1,4 @@
 <?php
-
-use DB;
-use Config;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
