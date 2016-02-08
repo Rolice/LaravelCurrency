@@ -76,7 +76,7 @@ abstract class Repository implements RepositoryInterface
             $currency->code = $rate->code;
         }
 
-        $currency->price = round($rate->price * 100);
+        $currency->price = round($rate->price * pow(10, (int) Config::get('laravel-currency.laravel-currency.precision')));
         $currency->refreshed_at = $rate->refreshed_at;
 
         if ($auto_save) {

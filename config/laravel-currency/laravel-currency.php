@@ -25,4 +25,16 @@ return [
 
     'repository' => \Rolice\LaravelCurrency\Repositories\YahooFinance::class,
 
+    /*
+    |--------------------------------------------------------------------------
+    | Currency Precision
+    |--------------------------------------------------------------------------
+    |
+    | Here you should specify the precision wanted when storing currency price.
+    | The number below specifies the number of digits after the decimal sign.
+    |
+    */
+
+    'precision' => 6,
+
 ];
