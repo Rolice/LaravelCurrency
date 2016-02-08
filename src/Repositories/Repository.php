@@ -2,6 +2,8 @@
 namespace Rolice\LaravelCurrency\Repositories;
 
 use Rolice\LaravelCurrency\Exceptions\NotImplementedException;
+use Rolice\LaravelCurrency\ExchangeRate;
+use Rolice\LaravelCurrency\Models\Currency;
 
 abstract class Repository
 {
@@ -62,5 +64,16 @@ abstract class Repository
     protected function csv($response)
     {
         throw new NotImplementedException;
+    }
+
+    public function convert(ExchangeRate $rate)
+    {
+        $currency = new Currency;
+        $currency->base = $rate->source;
+        $currency->code = $rate->target;
+        $currency->price = $rate->price;
+        $currency->refreshed_at = $rate->updated_at;
+
+        return $currency;
     }
 }

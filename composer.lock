@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "a0decf2b89f0357eda8139df9fc7273e",
+    "hash": "11104e204c115de0a796bc0c2fd50d51",
     "content-hash": "ad60b353f455900721d361db464b6570",
     "packages": [
         {
@@ -210,12 +210,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/database.git",
-                "reference": "2bddbfb8c42cb95c8870982745a532c5e267c49c"
+                "reference": "a4fbe612bbc08fa5a1b411da2c2969a1475e1e93"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/database/zipball/2bddbfb8c42cb95c8870982745a532c5e267c49c",
-                "reference": "2bddbfb8c42cb95c8870982745a532c5e267c49c",
+                "url": "https://api.github.com/repos/illuminate/database/zipball/a4fbe612bbc08fa5a1b411da2c2969a1475e1e93",
+                "reference": "a4fbe612bbc08fa5a1b411da2c2969a1475e1e93",
                 "shasum": ""
             },
             "require": {
@@ -262,7 +262,7 @@
                 "orm",
                 "sql"
             ],
-            "time": "2016-02-04 19:09:31"
+            "time": "2016-02-05 14:16:51"
         },
         {
             "name": "illuminate/filesystem",
@@ -320,12 +320,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/support.git",
-                "reference": "6cf0231245f5f2a79cb74c65b06f9ea69ff0bcf4"
+                "reference": "36d07ab94b9bf9c4c62ddd8a5e2966ff32f0541b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/support/zipball/6cf0231245f5f2a79cb74c65b06f9ea69ff0bcf4",
-                "reference": "6cf0231245f5f2a79cb74c65b06f9ea69ff0bcf4",
+                "url": "https://api.github.com/repos/illuminate/support/zipball/36d07ab94b9bf9c4c62ddd8a5e2966ff32f0541b",
+                "reference": "36d07ab94b9bf9c4c62ddd8a5e2966ff32f0541b",
                 "shasum": ""
             },
             "require": {
@@ -367,7 +367,7 @@
             ],
             "description": "The Illuminate Support package.",
             "homepage": "http://laravel.com",
-            "time": "2016-02-04 19:09:31"
+            "time": "2016-02-05 14:16:51"
         },
         {
             "name": "nesbot/carbon",
