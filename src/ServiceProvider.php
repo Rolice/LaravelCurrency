@@ -19,6 +19,10 @@ class ServiceProvider extends LaravelServiceProvider
 
         $this->mergeConfigFrom(__DIR__ . '/../config/laravel-currency/laravel-currency.php', 'laravel-currency');
         $this->mergeConfigFrom(__DIR__ . '/../config/laravel-currency/repository/yahoo-finance.php', 'yahoo-finance');
+
+        if (!$this->app->routesAreCached()) {
+            require __DIR__ . '/Http/routes.php';
+        }
     }
 
     /**
