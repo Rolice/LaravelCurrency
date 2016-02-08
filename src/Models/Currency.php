@@ -34,6 +34,18 @@ class Currency extends Model
      */
     protected $dates = ['refreshed_at'];
 
+    /**
+     * Create a new Eloquent model instance.
+     *
+     * @param  array  $attributes
+     * @return void
+     */
+    public function __construct(array $attributes = [])
+    {
+        $this->setConnection(Config::get('laravel-currency.laravel-currency.connection'));
+        parent::__construct($attributes);
+    }
+
     public function base()
     {
         $this->belongsTo(self::class);
