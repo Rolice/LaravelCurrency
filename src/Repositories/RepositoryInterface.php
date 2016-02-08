@@ -1,9 +1,10 @@
 <?php
 namespace Rolice\LaravelCurrency\Repositories;
 
+use Illuminate\Database\Eloquent\Collection;
+use Rolice\LaravelCurrency\Models\Currency;
 use Rolice\LaravelCurrency\ExchangeRate;
 use Rolice\LaravelCurrency\ExchangeRateCollection;
-use Rolice\LaravelCurrency\Models\Currency;
 
 interface RepositoryInterface
 {
@@ -21,5 +22,11 @@ interface RepositoryInterface
      * @return Currency The resulting model
      */
     public function convert(ExchangeRate $rate, $auto_save = true);
+
+    /**
+     * Batch method that fetch currencies first and then converts them. At the end Currency::all is called.
+     * @return Collection
+     */
+    public function synchronize();
 
 }

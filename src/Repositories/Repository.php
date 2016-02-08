@@ -5,7 +5,7 @@ use Rolice\LaravelCurrency\Exceptions\NotImplementedException;
 use Rolice\LaravelCurrency\ExchangeRate;
 use Rolice\LaravelCurrency\Models\Currency;
 
-abstract class Repository
+abstract class Repository implements RepositoryInterface
 {
     /**
      * The curl handle to be used by the repository to call external api services.
@@ -83,5 +83,16 @@ abstract class Repository
         }
 
         return $currency;
+    }
+
+    public function synchronize()
+    {
+        $currencies = $this->fetch();
+
+        foreach ($currencies as $currency) {
+            $this->convert($currency);
+        }
+
+        return Currency::all();
     }
 }
