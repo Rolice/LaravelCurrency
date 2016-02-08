@@ -11,7 +11,7 @@ class CreateCurrenciesTable extends Migration
      */
     public function up()
     {
-        Schema::setConnection(DB::connection(Config::get('econt.connection')))->create('currencies', function (Blueprint $table) {
+        Schema::setConnection(DB::connection(Config::get('laravel-currency.laravel-currency.connection')))->create('currencies', function (Blueprint $table) {
             $table->char('code', 3);
             $table->char('base', 3)->index('idx_base');
             $table->unsignedInteger('price');
@@ -30,6 +30,6 @@ class CreateCurrenciesTable extends Migration
      */
     public function down()
     {
-        Schema::setConnection(DB::connection(Config::get('econt.connection')))->dropIfExists('currencies');
+        Schema::setConnection(DB::connection(Config::get('laravel-currency.laravel-currency.connection')))->dropIfExists('currencies');
     }
 }
