@@ -15,6 +15,9 @@ class ServiceProvider extends LaravelServiceProvider
     public function boot()
     {
         $this->publishes([__DIR__ . '/../config/laravel-currency' => config_path('laravel-currency')], 'config');
+        $this->publishes([__DIR__ . '/../database/migrations/' => database_path('migrations')], 'migrations');
+
+        $this->mergeConfigFrom(__DIR__ . '/../config/laravel-currency/', 'laravel-currency');
     }
 
     /**
