@@ -51,7 +51,7 @@ class Sync extends Command
 
         $currencies = $repository->synchronize();
 
-        $this->comment(PHP_EOL . 'Currencies are now synchronized successfully.');
+        $this->comment('Currencies are now synchronized successfully.' . PHP_EOL);
 
 
     }
