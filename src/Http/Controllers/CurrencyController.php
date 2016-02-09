@@ -30,16 +30,17 @@ class CurrencyController extends Controller
 
         $from = Currency::find(Input::get('from'));
         $to = Currency::find(Input::get('to'));
-        $precision = pow(10, (int) Config::get('laravel-currency.laravel-currency.precision'));
+        $precision = (int) Config::get('laravel-currency.laravel-currency.precision');
+        $multiplier = pow(10, (int) Config::get('laravel-currency.laravel-currency.precision'));
         $amount = (float)Input::get('amount') ?: 1;
-        $amount = round($amount * $precision);
+        $amount = round($amount * $multiplier);
 
         if ($from && ($from->base == Input::get('to') || $from->base == $to->code)) {
-            return round(($amount / $from->price), 2);
+            return round(($amount / $from->price), $precision);
         }
 
         if ($to && ($to->base == Input::get('from') || $to->base == $from->code)) {
-            return round($amount * $to->price / pow($precision, 2), 2);
+            return round($amount * $to->price / pow($multiplier, 2), $precision);
         }
 
         if (!$from || !$to) {
@@ -50,7 +51,7 @@ class CurrencyController extends Controller
             throw new Exception('Cannot convert currencies with different bases.');
         }
 
-        return round(($amount / $from->price) * $to->price  / $precision, 2);
+        return round(($amount / $from->price) * $to->price  / $multiplier, $precision);
     }
 
 }
