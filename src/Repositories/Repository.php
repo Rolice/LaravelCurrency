@@ -1,10 +1,11 @@
 <?php
 namespace Rolice\LaravelCurrency\Repositories;
 
-use Rolice\LaravelCurrency\Exceptions\Exception;
-use Rolice\LaravelCurrency\Exceptions\NotImplementedException;
+use Illuminate\Support\Facades\Config;
 use Rolice\LaravelCurrency\ExchangeRate;
 use Rolice\LaravelCurrency\Models\Currency;
+use Rolice\LaravelCurrency\Exceptions\Exception;
+use Rolice\LaravelCurrency\Exceptions\NotImplementedException;
 
 abstract class Repository implements RepositoryInterface
 {

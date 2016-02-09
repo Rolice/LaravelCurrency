@@ -34,12 +34,12 @@ class CurrencyController extends Controller
         $amount = (float)Input::get('amount') ?: 1;
         $amount = round($amount * $precision);
 
-        if ($from && ($from->base == Input::get('to') || $from->base === $to->code)) {
-            return round(($amount / $from->price) / $precision, 2);
+        if ($from && ($from->base == Input::get('to') || $from->base == $to->code)) {
+            return round(($amount / $from->price), 2);
         }
 
-        if ($to && ($to->base == Input::get('from') || $to->base = $from->code)) {
-            return round($amount * $to->price / $precision, 2);
+        if ($to && ($to->base == Input::get('from') || $to->base == $from->code)) {
+            return round($amount * $to->price / pow($precision, 2), 2);
         }
 
         if (!$from || !$to) {
@@ -50,7 +50,7 @@ class CurrencyController extends Controller
             throw new Exception('Cannot convert currencies with different bases.');
         }
 
-        return ($amount / $from->price) * $to->price  / $precision;
+        return round(($amount / $from->price) * $to->price  / $precision, 2);
     }
 
 }
