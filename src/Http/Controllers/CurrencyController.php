@@ -36,11 +36,11 @@ class CurrencyController extends Controller
         $amount = round($amount * $multiplier);
 
         if ($from && ($from->base == Input::get('to') || $from->base == $to->code)) {
-            return round(($amount / $from->price), $precision);
+            return response()->json(round(($amount / $from->price), $precision));
         }
 
         if ($to && ($to->base == Input::get('from') || $to->base == $from->code)) {
-            return round($amount * $to->price / pow($multiplier, 2), $precision);
+            return response()->json(round($amount * $to->price / pow($multiplier, 2), $precision));
         }
 
         if (!$from || !$to) {
@@ -51,7 +51,7 @@ class CurrencyController extends Controller
             throw new Exception('Cannot convert currencies with different bases.');
         }
 
-        return round(($amount / $from->price) * $to->price  / $multiplier, $precision);
+        return response()->json(round(($amount / $from->price) * $to->price  / $multiplier, $precision));
     }
 
 }
