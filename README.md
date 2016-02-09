@@ -63,12 +63,13 @@ The package will define its own routes and controller by default - `<base>/curre
 
 The conversion will automatically convert the amount from the given currency to the targeted one. The amount parameter is optional, if ommitted it will default to `1` - the exact conversion rate. The currency codes are the official 3-character ISO code of the desired currency.
 
-You will receive a JSON response with the data or the error. Example for successful conversion is:
+You will receive a JSON response with a number on success or object containing errors occurred on failure.
+Example for successful conversion is:
 
-Request:
+### Request
 `http://<yourdomain.com>/currency/convert?from=BGN&to=EUR`
 
-Response:
+### Response
 ```json
 0.509279
 ```
