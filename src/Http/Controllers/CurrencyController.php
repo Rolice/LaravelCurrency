@@ -33,6 +33,11 @@ class CurrencyController extends Controller
         $precision = (int) Config::get('laravel-currency.laravel-currency.precision');
         $multiplier = pow(10, (int) Config::get('laravel-currency.laravel-currency.precision'));
         $amount = (float)Input::get('amount') ?: 1;
+
+        if ($from == $to) {
+            return response()->json($amount);
+        }
+
         $amount = round($amount * $multiplier);
 
         if ($from && ($from->base == Input::get('to') || $from->base == $to->code)) {
